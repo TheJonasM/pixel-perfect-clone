@@ -14,10 +14,10 @@ export interface Pin {
   lng: number;
   title: string;
   subtitle: string;
-  species?: "dog" | "cat" | "other";
-  urgency?: Urgency;
-  status?: Status;
-  photo?: string;
+  species?: "dog" | "cat" | "other" | undefined;
+  urgency?: Urgency | undefined;
+  status?: Status | undefined;
+  photo?: string | undefined;
   date?: string;
   distanceKm: number;
 }
@@ -47,21 +47,21 @@ const urg: Urgency[] = ["low", "medium", "high", "critical"];
 const stat: Status[] = ["pending", "active", "active", "reunited"];
 
 export const PINS: Pin[] = Array.from({ length: 48 }, (_, i) => {
-  const type = types[i % types.length];
+  const type = types[i % types.length]!;
   const r1 = rand(i + 1), r2 = rand(i + 101), r3 = rand(i + 201);
   const isPet = type === "lost" || type === "found" || type === "sighting";
-  const name = names[i % names.length];
+  const name = names[i % names.length]!;
   return {
     id: `p${i}`,
     type,
     lat: CENTER[0] + (r1 - 0.5) * 0.18,
     lng: CENTER[1] + (r2 - 0.5) * 0.14,
-    title: isPet ? name : type === "shelter" ? `Huellitas Shelter ${i}` : type === "vet" ? `VetCare ${places[i % places.length]}` : "Flood zone — animals at risk",
-    subtitle: places[i % places.length],
+    title: isPet ? name : type === "shelter" ? `Huellitas Shelter ${i}` : type === "vet" ? `VetCare ${places[i % places.length]!}` : "Flood zone — animals at risk",
+    subtitle: places[i % places.length]!,
     species: isPet ? (i % 3 === 0 ? "cat" : "dog") : undefined,
-    urgency: isPet || type === "emergency" ? urg[Math.floor(r3 * 4)] : undefined,
-    status: isPet ? stat[i % 4] : undefined,
-    photo: isPet ? photos[i % 4] : undefined,
+    urgency: isPet || type === "emergency" ? urg[Math.floor(r3 * 4)]! : undefined,
+    status: isPet ? stat[i % 4]! : undefined,
+    photo: isPet ? photos[i % 4]! : undefined,
     date: `${1 + (i % 9)}h ago`,
     distanceKm: Math.round((1 + r3 * 19) * 10) / 10,
   };
