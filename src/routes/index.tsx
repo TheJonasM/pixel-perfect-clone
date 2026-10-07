@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
-  faPaw, faBullhorn, faMapLocationDot, faSatelliteDish, faUsers, faTruckMedical, faHouseChimneyHeart, faArrowRight,
+  faPaw, faBullhorn, faMapLocationDot, faSatelliteDish, faUsers, faTruckMedical, faHouseMedical, faArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "@/components/Icon";
 import { Logo, ThemeToggle } from "@/components/AppShell";
@@ -48,7 +48,7 @@ const FEATURES = [
   { icon: faSatelliteDish, title: "Live radar", text: "Real-time lost, found and sighting signals within your chosen radius." },
   { icon: faUsers, title: "Community network", text: "Rescuers, volunteers and shelters coordinating in one place." },
   { icon: faTruckMedical, title: "Emergency zones", text: "Disaster areas and urgent cases surfaced to nearby responders." },
-  { icon: faHouseChimneyHeart, title: "Shelters & vets", text: "Find the closest verified help, open now." },
+  { icon: faHouseMedical, title: "Shelters & vets", text: "Find the closest verified help, open now." },
 ];
 
 function Landing() {
