@@ -53,15 +53,15 @@ function Clustered({ pins, onSelect }: { pins: Pin[]; onSelect: (p: Pin) => void
           <Marker key={`c${i}`} position={[g.lat, g.lng]} icon={clusterIcon(g.pins.length)}
             eventHandlers={{ click: () => map.flyTo([g.lat, g.lng], Math.min(zoom + 2, 16)) }} />
         ) : (
-          <Marker key={g.pins[0].id} position={[g.lat, g.lng]} icon={pinIcon(g.pins[0])}
-            eventHandlers={{ click: () => onSelect(g.pins[0]) }}>
+          <Marker key={g.pins[0]!.id} position={[g.lat, g.lng]} icon={pinIcon(g.pins[0]!)}
+            eventHandlers={{ click: () => onSelect(g.pins[0]!) }}>
             <Popup>
               <div className="flex w-52 gap-3">
-                {g.pins[0].photo && <img src={g.pins[0].photo} alt="" className="h-14 w-14 rounded-xl object-cover" />}
+                {g.pins[0]!.photo && <img src={g.pins[0]!.photo} alt="" className="h-14 w-14 rounded-xl object-cover" />}
                 <div className="min-w-0">
-                  <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: PIN_META[g.pins[0].type].color }}>{PIN_META[g.pins[0].type].label}</div>
-                  <div className="truncate text-sm font-bold">{g.pins[0].title}</div>
-                  <div className="text-xs opacity-70">{g.pins[0].subtitle} · {g.pins[0].distanceKm} km</div>
+                  <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: PIN_META[g.pins[0]!.type].color }}>{PIN_META[g.pins[0]!.type].label}</div>
+                  <div className="truncate text-sm font-bold">{g.pins[0]!.title}</div>
+                  <div className="text-xs opacity-70">{g.pins[0]!.subtitle} · {g.pins[0]!.distanceKm} km</div>
                 </div>
               </div>
             </Popup>
