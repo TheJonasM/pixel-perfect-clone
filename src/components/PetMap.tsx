@@ -76,8 +76,8 @@ export default function PetMap({ pins, radiusKm, onSelect }: { pins: Pin[]; radi
   return (
     <MapContainer center={CENTER} zoom={12} zoomControl={false} className="h-full w-full">
       <TileLayer
-        attribution='&copy; OpenStreetMap &copy; CARTO'
-        url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+        attribution='&copy; OpenStreetMap contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <Circle center={CENTER} radius={radiusKm * 1000}
         pathOptions={{ color: "#8B5CF6", weight: 1.5, fillColor: "#8B5CF6", fillOpacity: 0.06, dashArray: "6 6" }} />
