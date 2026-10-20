@@ -6,8 +6,8 @@ import { CENTER, PIN_META, type Pin } from "@/lib/data";
 
 function pinIcon(p: Pin) {
   const c = PIN_META[p.type].color;
-  const pulse = p.urgency === "critical" || p.urgency === "high" || p.type === "emergency";
-  const glyph = { lost: "?", found: "✓", sighting: "👁", shelter: "⌂", vet: "+", emergency: "!" }[p.type];
+  const pulse = p.urgency === "critical" || p.urgency === "high";
+  const glyph = { lost: "?", found: "✓", sighting: "👁" }[p.type];
   return L.divIcon({
     className: "",
     iconSize: [36, 36],
