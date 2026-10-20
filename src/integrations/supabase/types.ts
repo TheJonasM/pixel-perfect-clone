@@ -14,13 +14,174 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string
+          id: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string
+          id: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string
+          id?: string
+        }
+        Relationships: []
+      }
+      report_contacts: {
+        Row: {
+          email: string | null
+          owner_id: string
+          phone: string | null
+          report_id: string
+          share_email: boolean
+          share_phone: boolean
+        }
+        Insert: {
+          email?: string | null
+          owner_id?: string
+          phone?: string | null
+          report_id: string
+          share_email?: boolean
+          share_phone?: boolean
+        }
+        Update: {
+          email?: string | null
+          owner_id?: string
+          phone?: string | null
+          report_id?: string
+          share_email?: boolean
+          share_phone?: boolean
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_contacts_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: true
+            referencedRelation: "reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      report_messages: {
+        Row: {
+          body: string
+          created_at: string
+          id: string
+          report_id: string
+          sender_id: string
+          sender_name: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          id?: string
+          report_id: string
+          sender_id?: string
+          sender_name?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          id?: string
+          report_id?: string
+          sender_id?: string
+          sender_name?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "report_messages_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reports: {
+        Row: {
+          area: string
+          author_name: string
+          created_at: string
+          description: string
+          event_date: string
+          id: string
+          lat: number
+          linked_report_id: string | null
+          lng: number
+          owner_id: string
+          pet_name: string
+          photos: string[]
+          species: string
+          status: string
+          type: string
+          updated_at: string
+          urgency: string
+        }
+        Insert: {
+          area: string
+          author_name?: string
+          created_at?: string
+          description?: string
+          event_date?: string
+          id?: string
+          lat: number
+          linked_report_id?: string | null
+          lng: number
+          owner_id?: string
+          pet_name: string
+          photos?: string[]
+          species: string
+          status?: string
+          type: string
+          updated_at?: string
+          urgency?: string
+        }
+        Update: {
+          area?: string
+          author_name?: string
+          created_at?: string
+          description?: string
+          event_date?: string
+          id?: string
+          lat?: number
+          linked_report_id?: string | null
+          lng?: number
+          owner_id?: string
+          pet_name?: string
+          photos?: string[]
+          species?: string
+          status?: string
+          type?: string
+          updated_at?: string
+          urgency?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reports_linked_report_id_fkey"
+            columns: ["linked_report_id"]
+            isOneToOne: false
+            referencedRelation: "reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_report_contact: {
+        Args: { _report_id: string }
+        Returns: {
+          email: string
+          phone: string
+        }[]
+      }
     }
     Enums: {
       [_ in never]: never
